@@ -2,8 +2,8 @@ ThinkPHP 5.0
 ===============
 ## 安装
 ```
+git clone https://github.com/Kdiy/thinkphp.git
 cd think && composer install
-
 ```
 ## 第一个Hello World
 ~~~
