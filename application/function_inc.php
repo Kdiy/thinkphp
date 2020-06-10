@@ -2,6 +2,10 @@
 
 function Model($model='model',$params = array(),$path = ''){
     try{
+        $filename = APP_PATH.'library'.DS.$model.'.php';
+        if(!file_exists($filename)){
+            return new app\library\model($model);
+        }
         $models = explode('/',$model);
         $class = 'app\\library\\'.$path.join('\\',$models);
         $object = new $class();

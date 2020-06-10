@@ -29,13 +29,18 @@ namespace app\library;\r\n
 class {$name}
 {
 \r\n
-\r\n
     protected @tb0 = '{$name}';
     // del
  	public function _del(array @condtion)
  	{
  		return @this->_edit(@condtion,['deleted'=>1]);
  	}
+	// rel del
+ 	public function _rdel(array @condtion)
+ 	{
+ 		return db(@this->tb0)->where(@condtion)->delete();
+ 	}
+	
     // edit
  	public function _edit(array @condtion, array @data)
  	{
