@@ -2,15 +2,10 @@
 
 function Model($model='model',$params = array(),$path = ''){
     try{
-        $filename = APP_PATH.'library'.DS.$model.'.php';
-        if(!file_exists($filename)){
-            return new app\library\model($model);
-        }
         $models = explode('/',$model);
         $class = 'app\\library\\'.$path.join('\\',$models);
         $object = new $class();
         if($params){
-            
             call_user_func_array([$object,'__construct'],[$params]);
         }
         return $object;
@@ -18,10 +13,12 @@ function Model($model='model',$params = array(),$path = ''){
         return $e->getMessage();
     }
 }
+function D($tb_name){
+    return new app\library\model($tb_name);
+}
 function M($model='model',$params = array()){
     return Model($model,$params);
 }
-
 function L($model='model',$params = array()){
     return Model($model,$params,'lib\\');
 }
@@ -331,31 +328,6 @@ function page($total){
 	return $page_info;
 }
 
-//验证手机号码
-function checkPhone($phone){
-    $a='/^1[34578]\d{9}$/';
-    if(preg_match($a,$phone)){
-        return true;
-    }else{
-        return false;
-    }
-}
-//验证身份证号码
-function checkIdCard($card){
-    $a='/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/i';
-    if(preg_match($a,$card)){
-        return true;
-    }else{
-        return false;
-    }
-}
-//验证字符长度
-function check_validate_length($str,$length){
-    if(strlen($str) <= $length){
-        return true;
-    }else{
-        return false;
-    }
-}
+
 
 ?>
